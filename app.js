@@ -98,4 +98,5 @@ resetBtn.addEventListener("click", () =>{
     compScr.innerText = compScore;
     message.innerText = "Message";
     message.style.backgroundColor = "red";
+    choiceShow.innerHTML = "";
 })

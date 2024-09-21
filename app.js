@@ -3,6 +3,7 @@ let userScr = document.querySelector("#userScore");
 let compScr = document.querySelector("#compScore");
 let message = document.querySelector("#msg");
 let resetBtn = document.querySelector("#reset");
+let choiceShow = document.getElementById("showChoice");
 
 let userScore = 0;
 let compScore = 0;
@@ -17,18 +18,20 @@ const ganerateCompChoise = () =>{
     const compOption = ["rock", "paper", "scissors"];
     const randomChoice = Math.floor(Math.random()*3);
     return compOption[randomChoice] ;   
+    
+    
 
 
 }
 
 const showWinner = (userWin) =>{
     if(userWin){
-       
+        
         userScore += 1;
         userScr.innerText = userScore;
         message.innerText = "You are win";
         message.style.backgroundColor = "green";
-
+        
         
     }else{
         compScore += 1;
@@ -40,15 +43,19 @@ const showWinner = (userWin) =>{
     }
     
 }
-
+const showChoices = (userChoice,compChoice) =>{
+    choiceShow.innerHTML = `Your choice is <h2  style = " font-size:30px; color: blue; font-weight:bold; "> ${userChoice}</h2> and Computer choice is  <h2  style = " font-size:30px; color: red; font-weight:bold; ">${compChoice}</h2>  `;
+    
+}
 const gameDrow = () => {
     message.innerText = "Game is Drow";
     message.style.backgroundColor = "grey";
-}
+}                                       
 const playGame = (userChoice) => {
     
     const compChoice = ganerateCompChoise()
-    
+    showChoices(userChoice,compChoice);
+    console.log(compChoice);
      
      
     if( userChoice === compChoice){
@@ -66,18 +73,19 @@ const playGame = (userChoice) => {
             userWin = compChoice === "rock" ? false : true;
         }
         showWinner(userWin);
-
+        
     }
-
+    
 }
 choices.forEach((choice)=>{
-
+    
     choice.addEventListener("click",()=>{
-       const userChoice =  choice.getAttribute("id");
-      
-       
-       
-       playGame(userChoice)
+        const userChoice =  choice.getAttribute("id");
+        
+        console.log(userChoice);
+        
+        
+        playGame(userChoice)
     })
 })
 
